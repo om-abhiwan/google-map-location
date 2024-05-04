@@ -10,7 +10,7 @@ function App() {
 
   // setting category
   const [category, setCategory] = useState("")
-  const [hit, setHit] = useState(0)
+  // const [hit, setHit] = useState(0)
 
 
 
@@ -52,8 +52,8 @@ function App() {
 
   const handleSendInfo = async () => {
 
-      // const resp = await axios.post("https://google-map-backend-7oji.onrender.com/getinfo", {
-      const resp = await axios.post("http://localhost:3001/getinfo", {
+      const resp = await axios.post("https://google-map-backend-7oji.onrender.com/getinfo", {
+      // const resp = await axios.post("http://localhost:3001/getinfo", {
         long: longitude,
         lati: latitude
       })
@@ -104,7 +104,7 @@ function App() {
     <>
 
 
-      <h3>HIT LEFT  {hit} </h3>
+    
 
       <h4>
         Longitutde : {longitude}
