@@ -51,9 +51,9 @@ function App() {
 
 
   const handleSendInfo = async () => {
-    if (hit >= 5) {
-      const resp = await axios.post("https://google-map-backend-7oji.onrender.com/getinfo", {
-      // const resp = await axios.post("http://localhost:3001/getinfo", {
+
+      // const resp = await axios.post("https://google-map-backend-7oji.onrender.com/getinfo", {
+      const resp = await axios.post("http://localhost:3001/getinfo", {
         long: longitude,
         lati: latitude
       })
@@ -61,9 +61,7 @@ function App() {
       setHit(resp.data.left)
       console.log(resp)
       console.log(resp.data.category)
-    }else{
-      alert("USE LIMIT OVER")
-    }
+
   }
 
   useEffect(() => {
