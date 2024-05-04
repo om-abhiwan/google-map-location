@@ -10,7 +10,7 @@ function App() {
 
   // setting category
   const [category, setCategory] = useState("")
-
+  const [hit, setHit] = useState(0)
 
 
 
@@ -51,13 +51,19 @@ function App() {
 
 
   const handleSendInfo = async () => {
-    const resp =await axios.post("https://google-map-backend-7oji.onrender.com/getinfo",{
-    // const resp =await axios.post("http://localhost:3001/getinfo",{
-      long:longitude,
-      lati:latitude
-    })
-    setCategory(resp.data.category)
-    console.log(resp.data.category)
+    if (hit >= 5) {
+      const resp = await axios.post("https://google-map-backend-7oji.onrender.com/getinfo", {
+      // const resp = await axios.post("http://localhost:3001/getinfo", {
+        long: longitude,
+        lati: latitude
+      })
+      setCategory(resp.data.category)
+      setHit(resp.data.left)
+      console.log(resp)
+      console.log(resp.data.category)
+    }else{
+      alert("USE LIMIT OVER")
+    }
   }
 
   useEffect(() => {
@@ -98,13 +104,19 @@ function App() {
 
   return (
     <>
-      <p>
+
+
+      <h3>HIT LEFT  {hit} </h3>
+
+      <h4>
         Longitutde : {longitude}
         <br />
         Latitude : {latitude}
-      </p>
+      </h4>
 
-      Category : {category}
+      <h4>
+        Category : {category}
+      </h4>
 
 
 
