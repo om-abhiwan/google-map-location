@@ -16,38 +16,38 @@ function App() {
 
   // console.log(location)
 
-  useEffect(() => {
-    // Fetch geolocation data based on IP address
-    fetch('https://ipapi.co/json/')
-      .then(response => response.json())
-      .then(data => {
-        // Extract latitude and longitude from the response data
-        const latitude = data.latitude;
-        const longitude = data.longitude;
-        console.log(latitude)
-        console.log(longitude)
-        // Update latitude and longitude state variables
-        setLatitude(latitude);
-        setLongtitude(longitude);
-      })
-      .catch(error => {
-        console.error('Error fetching geolocation data:', error);
-      });
-  }, []);
-
-
-
-
   // useEffect(() => {
-  //   const watchId = navigator.geolocation.watchPosition((position) => {
-  //     setLongtitude(position.coords.longitude);
-  //     setLatitude(position.coords.latitude);
-  //   });
-
-  //   return () => {
-  //     navigator.geolocation.clearWatch(watchId);
-  //   };
+  //   // Fetch geolocation data based on IP address
+  //   fetch('https://ipapi.co/json/')
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       // Extract latitude and longitude from the response data
+  //       const latitude = data.latitude;
+  //       const longitude = data.longitude;
+  //       console.log(latitude)
+  //       console.log(longitude)
+  //       // Update latitude and longitude state variables
+  //       setLatitude(latitude);
+  //       setLongtitude(longitude);
+  //     })
+  //     .catch(error => {
+  //       console.error('Error fetching geolocation data:', error);
+  //     });
   // }, []);
+
+
+
+
+  useEffect(() => {
+    const watchId = navigator.geolocation.watchPosition((position) => {
+      setLongtitude(position.coords.longitude);
+      setLatitude(position.coords.latitude);
+    });
+
+    return () => {
+      navigator.geolocation.clearWatch(watchId);
+    };
+  }, []);
 
 
   const handleSendInfo = async () => {
